@@ -1,0 +1,355 @@
+object Form1: TForm1
+  Left = 373
+  Height = 688
+  Top = 136
+  Width = 598
+  Caption = 'MyContact'
+  ClientHeight = 663
+  ClientWidth = 598
+  Constraints.MinWidth = 590
+  Menu = MainMenu1
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  LCLVersion = '1.2.6.0'
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 592
+    Top = 45
+    Width = 598
+    Align = alClient
+    Anchors = []
+    AutoEdit = False
+    AutoFillColumns = True
+    BorderSpacing.Top = 45
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgRowHighlight]
+    Scrollbars = ssAutoBoth
+    TabOrder = 1
+    OnColEnter = DBGrid1ColEnter
+    OnDblClick = DBGrid1DblClick
+    OnKeyPress = DBGrid1KeyPress
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 241
+    BeforeAction = DBNavigator1BeforeAction
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    Options = []
+    TabOrder = 0
+  end
+  object StatusBar1: TStatusBar
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 26
+    Top = 637
+    Width = 598
+    Panels = <    
+      item
+        Text = 'Column - 1'
+        Width = 150
+      end    
+      item
+        Text = 'Record - 1'
+        Width = 50
+      end>
+    SimplePanel = False
+    Visible = False
+  end
+  object Panel1: TPanel
+    AnchorSideBottom.Control = StatusBar1
+    Left = 0
+    Height = 37
+    Top = 600
+    Width = 598
+    Anchors = [akLeft, akRight, akBottom]
+    ClientHeight = 37
+    ClientWidth = 598
+    Font.Height = -15
+    ParentFont = False
+    TabOrder = 2
+    Visible = False
+    object Label1: TLabel
+      Left = 16
+      Height = 20
+      Top = 8
+      Width = 71
+      Caption = 'Search for '
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      AnchorSideLeft.Side = asrBottom
+      Left = 237
+      Height = 20
+      Top = 8
+      Width = 77
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 10
+      Caption = 'in column'
+      ParentColor = False
+    end
+    object ComboBox1: TComboBox
+      AnchorSideLeft.Side = asrBottom
+      Left = 317
+      Height = 28
+      Top = 4
+      Width = 128
+      BorderSpacing.Left = 90
+      ItemHeight = 20
+      ItemIndex = 0
+      Items.Strings = (
+        'All'
+        'Name'
+        'Phone'
+        'Address'
+        'Email'
+        'Other'
+      )
+      TabOrder = 0
+      Text = 'All'
+    end
+    object Edit1: TEdit
+      Left = 104
+      Height = 28
+      Top = 4
+      Width = 106
+      AutoSize = False
+      OnChange = Edit1Change
+      TabOrder = 1
+    end
+    object Done: TButton
+      Left = 488
+      Height = 21
+      Top = 8
+      Width = 90
+      Caption = 'Done'
+      OnClick = DoneClick
+      TabOrder = 2
+    end
+  end
+  object MainMenu1: TMainMenu
+    left = 480
+    object MenuItem1: TMenuItem
+      Caption = 'File'
+      OnClick = MenuItem1Click
+      object Commit: TMenuItem
+        Caption = 'Commit'
+        OnClick = CommitClick
+      end
+      object Cancel: TMenuItem
+        Caption = 'Cancel'
+        OnClick = CancelClick
+      end
+      object Quit: TMenuItem
+        Caption = 'Exit'
+        OnClick = QuitClick
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Edit'
+      OnClick = MenuItem2Click
+      object Undo: TMenuItem
+        Caption = 'Undo'
+        OnClick = UndoClick
+      end
+      object Cut: TMenuItem
+        Caption = 'Cut'
+        OnClick = CutClick
+      end
+      object Cpy: TMenuItem
+        Caption = 'Copy'
+        OnClick = CpyClick
+      end
+      object Paste: TMenuItem
+        Caption = 'Paste'
+        OnClick = PasteClick
+      end
+      object Delete: TMenuItem
+        Caption = 'Delete'
+        OnClick = DeleteClick
+      end
+      object SelectAll: TMenuItem
+        Caption = 'Select All'
+        OnClick = SelectAllClick
+      end
+      object Time: TMenuItem
+        Caption = 'Time/Date'
+        OnClick = TimeClick
+      end
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Search'
+      OnClick = MenuItem3Click
+      object Find: TMenuItem
+        Caption = 'Find...'
+        OnClick = FindClick
+      end
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'View'
+      OnClick = MenuItem4Click
+      object StatusBar: TMenuItem
+        AutoCheck = True
+        Caption = 'Status Bar'
+        OnClick = StatusBarClick
+      end
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'About'
+      OnClick = MenuItem5Click
+      object About: TMenuItem
+        Caption = 'About MyContact'
+        OnClick = AboutClick
+      end
+    end
+  end
+  object SQLite3Connection1: TSQLite3Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'D:\Projects\MyContact\mycontact.db'
+    KeepConnection = False
+    Params.Strings = (
+      'isc_tpb_read_committed'
+    )
+    Transaction = SQLTransaction1
+    LogEvents = []
+    Options = []
+    left = 448
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'Name'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'Phone'
+        DataType = ftLargeint
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'Address'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'Email'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'Other'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end>
+    Database = SQLite3Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      ''
+    )
+    Params = <>
+    left = 352
+    object SQLQuery1ID: TLongintField
+      Alignment = taLeftJustify
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Visible = False
+    end
+    object SQLQuery1Name: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object SQLQuery1Phone: TLargeintField
+      Alignment = taLeftJustify
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Phone'
+      Index = 2
+      LookupCache = False
+      LookupDataSet = SQLQuery1
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQuery1Address: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'Address'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object SQLQuery1Email: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'Email'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object SQLQuery1Other: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'Other'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = SQLite3Connection1
+    left = 384
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 416
+  end
+end
